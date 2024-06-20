@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Hotel\PutRequest;
 use App\Http\Requests\Hotel\StoreRequest;
 use App\Models\Hotel;
 
@@ -41,7 +40,7 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-        return view ('dashboard.hotel.show', compact('hotel'));
+        return view('dashboard.hotel.show', compact('hotel'));
     }
 
     /**
@@ -55,7 +54,7 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PutRequest $request, Hotel $hotel)
+    public function update(StoreRequest $request, Hotel $hotel)
     {
         $hotel->update($request->validated());
         return redirect()->route('hotel.index')->with('session', 'Hotel updated successfully');

@@ -35,7 +35,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::resource('hotel', HotelController::class);
     Route::resource('service', ServiceController::class);
-    //Route::resource('guest', GuestController::class);
+    Route::resource('guest', GuestController::class);
     Route::resource('room', RoomController::class);
 });
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Room\StoreRequest;
 use App\Models\Room;
-use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {

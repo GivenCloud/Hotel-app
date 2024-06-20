@@ -1,0 +1,13 @@
+¿Categorías de los servicios?
+¿Un servicio debe guardar una clave ajena del hotel?
+¿Una habitación debe tener una clave ajena del hotel?
+¿Un usuario debe tener una clave ajena de la habitación en la que está?
+¿Un usuario tiene el un atributo dni y otro pasaporte y debe tener uno de los dos obligatoriamente y el otro no? ¿Tiene que tener un mismo atributo para los dos y que se añada el que quiera?
+¿El atributo website de hotel solo debería de aceptar URL o simplemente una string?
+¿Un hotel solo tiene una habitación?
+¿Los números de teléfono en la base de datos los añado con int o como string?
+¿La fecha de salida puede ser el mismo día que la de entrada?
+
+
+
+Tengo que cambiar a MariaDB
