@@ -22,7 +22,6 @@ class RoomSeeder extends Seeder
         for ($i = 1; $i <= 20; $i++) {
             $type = Type::inRandomOrder()->first();
             $hotel = Hotel::inRandomOrder()->first();
-            $n = rand(1, 8);
             Room::create(
                 ['number' => $i,
                 'type_id' => $type->id,
