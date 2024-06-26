@@ -3,22 +3,22 @@
 @section('content')
     <a href="{{ route('service.create')}}">Create</a>
 
-    <table>
+    <table class="table-auto w-full bg-white">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Actions</th>
+            <tr class="border">
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Name</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Description</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Category</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($services as $service)
-                <tr>
-                    <td>{{ $service->name }}</td>
-                    <td>{{ $service->description }}</td>
-                    <td>{{ $service->category }}</td>
-                    <td>
+                <tr class="border">
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $service->name }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $service->description }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $service->category->name }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">
                         <a href="{{ route('service.show', $service)}}">See</a>
                         <a href="{{ route('service.edit', $service) }}">Edit</a>
                         <form action="{{ route('service.destroy', $service) }}" method="POST">

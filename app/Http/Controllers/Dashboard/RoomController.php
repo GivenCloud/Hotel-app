@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Room\StoreRequest;
+use App\Models\Hotel;
 use App\Models\Room;
+use App\Models\Type;
 
 class RoomController extends Controller
 {
@@ -13,8 +15,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::paginate(2);;
-        return view('dashboard.room.index', compact('rooms'));
+        $rooms = Room::paginate(5);
+        $room = Room::find(1);
+        return view('dashboard.room.index', compact('rooms', 'room'));
     }
 
     /**
@@ -22,8 +25,10 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $types = Type::get();
+        $hotels = Hotel::get();
         $room = new Room();
-        return view('dashboard.room.create', compact('room'));
+        return view('dashboard.room.create', compact('room', 'types', 'hotels'));
     }
 
     /**
@@ -48,7 +53,9 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        return view('dashboard.room.edit', compact('room'));
+        $types = Type::get();
+        $hotels = Hotel::get();
+        return view('dashboard.room.edit', compact('room', 'types', 'hotels'));
     }
 
     /**

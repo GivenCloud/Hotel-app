@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Service\StoreRequest;
+use App\Models\Category;
 use App\Models\Service;
 
 class ServiceController extends Controller
@@ -13,7 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::paginate(2);
+        $services = Service::paginate(5);
         return view('dashboard.service.index', compact('services'));
     }
 
@@ -22,8 +23,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
+        $categories = Category::pluck('id', 'name');
         $service = New Service();
-        return view('dashboard.service.create', compact('service'));
+        return view('dashboard.service.create', compact('service', 'categories'));
     }
 
     /**
@@ -48,7 +50,8 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('dashboard.service.edit', compact('service'));
+        $categories = Category::pluck('id', 'name');
+        return view('dashboard.service.edit', compact('service', 'categories'));
     }
 
     /**

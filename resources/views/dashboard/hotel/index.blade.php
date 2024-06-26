@@ -1,6 +1,17 @@
 @extends('dashboard.layout')
 
 @section('content')
+    @if ($prueba != null)
+        <p>Este es el servicio del que dispone el hotel: </p>
+        <ul>
+            @if ($prueba->services)
+                @foreach ($prueba->services as $service)
+                    <li>{{ $service->name }}</li>
+                @endforeach
+            @endif
+        </ul>  
+    @endif
+    
     <a href="{{ route('hotel.create')}}">Create</a>
 
     <table class="table-auto w-full bg-white">

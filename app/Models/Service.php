@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'name', 'description', 'category'];
+    protected $fillable = ['id', 'name', 'description', 'category_id'];
 
-    public function hotel()
+    public function hotels()
     {
-        return $this->belongsTo(Hotel::class);
+        return $this->belongsToMany(Hotel::class, 'hotel_service');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

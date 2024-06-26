@@ -3,29 +3,29 @@
 @section('content')
     <a href="{{ route('guest.create')}}">Create</a>
 
-    <table>
+    <table class="table-auto w-full bg-white">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Last Name</th>
-                <th>DNI/Passport</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Check in date</th>
-                <th>Check out date</th>
+            <tr class="border">
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Name</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Last Name</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">DNI/Passport</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Email</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Phone</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Check in date</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Check out date</th>
             </tr>
         </thead>
         <tbody>
             @foreach($guests as $guest)
-                <tr>
-                    <td>{{ $guest->name }}</td>
-                    <td>{{ $guest->lastName }}</td>
-                    <td>{{ $guest->dniPassport }}</td>
-                    <td>{{ $guest->email }}</td>
-                    <td>{{ $guest->phone }}</td>
-                    <td>{{ $guest->checkInDate }}</td>
-                    <td>{{ $guest->checkOutDate }}</td>
-                    <td>
+                <tr class="border">
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->name }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->lastName }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->dniPassport }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->email }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->phone }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->checkInDate }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $guest->checkOutDate }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">
                         <a href="{{ route('guest.show', $guest)}}">See</a>
                         <a href="{{ route('guest.edit', $guest) }}">Edit</a>
                         <form action="{{ route('guest.destroy', $guest) }}" method="POST">

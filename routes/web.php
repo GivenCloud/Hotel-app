@@ -3,7 +3,9 @@
 use App\Http\Controllers\Dashboard\GuestController;
 use App\Http\Controllers\Dashboard\HotelController;
 use App\Http\Controllers\Dashboard\RoomController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\TypeController;
 use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +40,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
         'hotel' => HotelController::class,
         'room' => RoomController::class,
         'service' => ServiceController::class,
-        'guest' => GuestController::class
+        'guest' => GuestController::class,
+        'category' => CategoryController::class,
+        'type' => TypeController::class
     ]);
 });
 

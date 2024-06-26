@@ -1,16 +1,9 @@
-¿Categorías de los servicios?
-¿Un servicio debe guardar una clave ajena del hotel?
-¿Una habitación debe tener una clave ajena del hotel?
-¿Un usuario debe tener una clave ajena de la habitación en la que está?
-¿Un usuario tiene el un atributo dni y otro pasaporte y debe tener uno de los dos obligatoriamente y el otro no? ¿Tiene que tener un mismo atributo para los dos y que se añada el que quiera?
-¿El atributo website de hotel solo debería de aceptar URL o simplemente una string?
-¿Un hotel solo tiene una habitación?
-¿Los números de teléfono en la base de datos los añado con int o como string?
-¿La fecha de salida puede ser el mismo día que la de entrada?
+¿Cómo se asigna un huesped a una habitación? ¿O una habitación a un hotel? Etc.
+¿Cuándo se borra una habitación tengo que borrar a los huespedes? ¿O solo la relación entre huesped y habitación?
+¿No se puede usar mockito con con php ya que es una biblioteca específica de java? -> Posible solución: usar PHPUnit y Mockery par realizar pruebas unitarias y trabajar con mocks
+¿Qué queremos que vea un usuario normal?
+¿Cómo puedo hacer que un usuario normal se convierta en un administrador? ¿Directamente desde la base de datos?
+¿Dónde debería de poner los métodos para asignar un servicio a un hotel o viceversa?
 
-¿A que se refiere esto? -> ¿El servicio devolverá los resultados de forma paginada. Es decir, se podrán elegir
-tantos los elementos por página, como la página que devuelta?
-
-
-
-Tengo que cambiar a MariaDB
+Hecha la tabla pivote entre hotel y servicio
+Hecha la tabla pivote entre habitacion y huesped

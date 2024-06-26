@@ -13,7 +13,7 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $guests = Guest::paginate(2);
+        $guests = Guest::paginate(5);
         return view('dashboard.guest.index', compact('guests'));
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Service;
+namespace App\Http\Requests\Type;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,8 +22,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:150|unique:services,name,'.$this->route('service.id'),
-            'description' => 'nullable|string|max:255',
-            'category_id' => 'required|integer'        ];
+            'name' => 'required|string|min:3|max:150, unique:types,name' . $this->route('type.id'),
+            'price' => 'required|numeric|min:0|max:999999.99'
+        ];
     }
 }

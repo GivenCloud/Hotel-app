@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hotel\StoreRequest;
 use App\Models\Hotel;
+use App\Models\Service;
 
 class HotelController extends Controller
 {
@@ -13,8 +14,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::paginate(2);;
-        return view('dashboard.hotel.index', compact('hotels'));
+        $hotels = Hotel::paginate(5);
+        $prueba = Hotel::find(1);
+        return view('dashboard.hotel.index', compact('hotels', 'prueba'));
     }
 
     /**

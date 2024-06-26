@@ -22,9 +22,9 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'number' => 'required|numeric|max:4|unique:rooms,number,'.$this->room->number,
-            'type' => 'required|string|max:150',
-            'price' => 'required|numeric',
+            'number' => 'required|numeric|max:400|unique:rooms,number,'.$this->route('room.id'),
+            'type_id' => 'required|integer',
+            'hotel_id' => 'required|integer',
         ];
     }
 }
