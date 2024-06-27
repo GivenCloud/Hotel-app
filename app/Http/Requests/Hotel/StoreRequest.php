@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Hotel;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class StoreRequest extends FormRequest
 {
@@ -19,6 +21,14 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+
+    public function failedValidation (\Illuminate\Contracts\Validation\Validator $validator) {
+        if ($this->expectsJson()) {
+            $response = New Response($validator->errors(), 400);
+            throw new ValidationException($validator, $response);
+        }
+    }
+
     public function rules(): array
     {
         return [

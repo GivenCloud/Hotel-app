@@ -13,4 +13,8 @@ class Guest extends Model
     public function rooms() {
         return $this->belongsToMany(Room::class, 'guest_room');
     }
+
+    public function services() {
+        return $this->belongsToMany(Service::class, 'guest_service');
+    }
 }

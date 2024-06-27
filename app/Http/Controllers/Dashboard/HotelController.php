@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hotel\StoreRequest;
 use App\Models\Hotel;
-use App\Models\Service;
 
 class HotelController extends Controller
 {

@@ -4,6 +4,5 @@
 ¿Qué queremos que vea un usuario normal?
 ¿Cómo puedo hacer que un usuario normal se convierta en un administrador? ¿Directamente desde la base de datos?
 ¿Dónde debería de poner los métodos para asignar un servicio a un hotel o viceversa?
-
-Hecha la tabla pivote entre hotel y servicio
-Hecha la tabla pivote entre habitacion y huesped
+¿Hago una API para cada modelo? Hotel, huesped, servicio...
+¿Tengo que hacer una busqueda? Por ejemplo, obtener todas las habitaciones de cierto hotel.

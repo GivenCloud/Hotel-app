@@ -19,4 +19,9 @@ class Service extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function guests()
+    {
+        return $this->belongsToMany(Guest::class, 'guest_service');
+    }
 }
