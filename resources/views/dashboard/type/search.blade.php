@@ -3,12 +3,6 @@
 @section('content')
     <a href="{{ route('type.create')}}">Create</a>
 
-    <!-- Formulario de busqueda -->
-    <form action="{{route('type.search')}}" method="GET" >
-        <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
-        <button type="submit">Search</button>
-    </form>
-
     <table class="table-auto w-full bg-white">
         <thead>
             <tr class="border">
@@ -19,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($types as $type)
+            @foreach($typesSearch as $type)
                 <tr class="border">
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $type->id }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $type->name }}</td>
@@ -38,6 +32,6 @@
         </tbody>
     </table>
 
-    {{ $types->links() }}
+    {{ $typesSearch->links() }}
     
 @endsection

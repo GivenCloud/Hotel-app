@@ -17,6 +17,16 @@ class CategoryController extends Controller
         return view('dashboard.category.index', compact('categories'));
     }
 
+    public function search()
+    {
+        $search = request('search');
+        $categoriesSearch = Category::query()
+            ->where('name', 'LIKE', "%{$search}%");
+
+        $categoriesSearch = $categoriesSearch->paginate(5);
+        return view('dashboard.category.search', compact('categoriesSearch'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

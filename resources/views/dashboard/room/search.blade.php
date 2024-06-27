@@ -1,21 +1,7 @@
 @extends('dashboard.layout')
 
 @section('content')
-    {{-- @if ($room != null)
-    <p>Esta es la habitación {{ $room->number }}  la cual esta alojad@: </p>
-    <ul>
-        @foreach ($room->guests as $guest)
-            <li>{{ $guest->name }}</li>
-        @endforeach
-    </ul>
-    @endif --}}
     <a href="{{ route('room.create')}}">Create</a>
-
-    <!-- Formulario de busqueda -->
-    <form action="{{route('room.search')}}" method="GET" >
-        <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
-        <button type="submit">Search</button>
-    </form>
 
     <table class="table-auto w-full bg-white">
         <thead>
@@ -28,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($rooms as $room)
+            @foreach($roomsSearch as $room)
                 <tr class="border">
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $room->number }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $room->type->name }}</td>
@@ -47,6 +33,6 @@
             @endforeach
         </tbody>
     </table>
-    {{ $rooms->links() }}
+    {{ $roomsSearch->links() }}
     
 @endsection

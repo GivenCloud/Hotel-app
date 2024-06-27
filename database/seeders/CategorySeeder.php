@@ -26,7 +26,7 @@ class CategorySeeder extends Seeder
         );
 
         Category::create(
-            ['name' => 'Installation']
+            ['name' => 'Instalation']
         );
     }
 }

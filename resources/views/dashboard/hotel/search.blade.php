@@ -2,24 +2,7 @@
 
 @section('content')
 
-    {{-- @if ($prueba != null)
-        <p>Este es el servicio del que dispone el hotel: </p>
-        <ul>
-            @if ($prueba->services)
-                @foreach ($prueba->services as $service)
-                    <li>{{ $service->name }}</li>
-                @endforeach
-            @endif
-        </ul>  
-    @endif --}}
-    
-    <a href="{{ route('hotel.create') }}">Create</a>
-
-    <!-- Formulario de busqueda -->
-    <form action="{{route('hotel.search')}}" method="GET" >
-        <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
-        <button type="submit">Search</button>
-    </form>
+    <a href="{{ route('hotel.create')}}">Create</a>
 
     <table class="table-auto w-full bg-white">
         <thead>
@@ -33,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($hotels as $hotel)
+            @foreach($hotelsSearch as $hotel)
                 <tr class="border">
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->name }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->adress }}</td>
@@ -54,6 +37,5 @@
         </tbody>
     </table>
 
-    {{ $hotels->links() }}
-    
+    {{ $hotelsSearch->links() }}
 @endsection

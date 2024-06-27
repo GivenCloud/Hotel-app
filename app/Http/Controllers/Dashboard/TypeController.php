@@ -17,6 +17,17 @@ class TypeController extends Controller
         return view('dashboard.type.index', compact('types'));
     }
 
+    public function search()
+    {
+        $search = request('search');
+        $typesSearch = Type::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('price', 'LIKE', "%{$search}%");
+
+        $typesSearch = $typesSearch->paginate(5);
+        return view('dashboard.type.search', compact('typesSearch'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

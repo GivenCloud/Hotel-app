@@ -36,6 +36,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('hotel/search', [HotelController::class, 'search'])->name('hotel.search');
+    Route::get('room/search', [RoomController::class, 'search'])->name('room.search');
+    Route::get('service/search', [ServiceController::class, 'search'])->name('service.search');
+    Route::get('guest/search', [GuestController::class, 'search'])->name('guest.search');
+    Route::get('category/search', [CategoryController::class, 'search'])->name('category.search');
+    Route::get('type/search', [TypeController::class, 'search'])->name('type.search');
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
     Route::resources([
         'hotel' => HotelController::class,
         'room' => RoomController::class,

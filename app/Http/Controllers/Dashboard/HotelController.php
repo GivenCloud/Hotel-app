@@ -15,7 +15,22 @@ class HotelController extends Controller
     {
         $hotels = Hotel::paginate(5);
         $prueba = Hotel::find(1);
+
         return view('dashboard.hotel.index', compact('hotels', 'prueba'));
+    }
+
+    public function search()
+    {
+        $search = request('search');
+        $hotelsSearch = Hotel::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('adress', 'LIKE', "%{$search}%")
+            ->orWhere('phone', 'LIKE', "%{$search}%")
+            ->orWhere('email', 'LIKE', "%{$search}%")
+            ->orWhere('website', 'LIKE', "%{$search}%");
+
+        $hotelsSearch = $hotelsSearch->paginate(5);
+        return view('dashboard.hotel.search', compact('hotelsSearch'));
     }
 
     /**

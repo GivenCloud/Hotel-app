@@ -20,6 +20,42 @@ class RoomController extends Controller
         return view('dashboard.room.index', compact('rooms', 'room'));
     }
 
+    public function search()
+    {
+        $search = request('search');
+        
+        if(is_numeric($search)){
+            $roomsSearch = Room::query()
+                ->where('number', '=', $search);
+        } else {
+            $hotel = Hotel::where('name', $search)->first();
+            $type = Type::where('name', $search)->first();
+
+            if ($hotel) {
+                $hotelId = $hotel->id;
+            } else {
+                $hotelId = null; 
+            }
+
+            if ($type) {
+                $typeId = $type->id;
+            } else {
+                $typeId = null; 
+            }
+
+            $roomsSearch = Room::query()
+                ->when($hotelId, function ($query) use ($hotelId) {
+                    return $query->where('hotel_id', '=', $hotelId);
+                })
+                ->orWhere(function ($query) use ($typeId) {
+                    $query->where('type_id', '=', $typeId);
+                });
+        }
+        
+        $roomsSearch = $roomsSearch->paginate(5);
+        return view('dashboard.room.search', compact('roomsSearch'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

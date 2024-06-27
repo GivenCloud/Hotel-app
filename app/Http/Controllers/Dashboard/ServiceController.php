@@ -18,6 +18,20 @@ class ServiceController extends Controller
         return view('dashboard.service.index', compact('services'));
     }
 
+    public function search()
+    {
+        $search = request('search');
+        $category = Category::where('name', $search)->first();
+
+        $servicesSearch = Service::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->orWhere('category_id', 'LIKE', $category->id);
+
+        $servicesSearch = $servicesSearch->paginate(5);
+        return view('dashboard.service.search', compact('servicesSearch'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

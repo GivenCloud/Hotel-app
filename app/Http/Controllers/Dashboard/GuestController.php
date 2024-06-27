@@ -17,6 +17,22 @@ class GuestController extends Controller
         return view('dashboard.guest.index', compact('guests'));
     }
 
+    public function search()
+    {
+        $search = request('search');
+        $guestsSearch = Guest::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('lastName', 'LIKE', "%{$search}%")
+            ->orWhere('dniPassport', 'LIKE', "%{$search}%")
+            ->orWhere('email', 'LIKE', "%{$search}%")
+            ->orWhere('phone', 'LIKE', "%{$search}%")
+            ->orWhere('checkInDate', 'LIKE', "%{$search}%")
+            ->orWhere('checkOutDate', 'LIKE', "%{$search}%");
+
+        $guestsSearch = $guestsSearch->paginate(5);
+        return view('dashboard.guest.search', compact('guestsSearch'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

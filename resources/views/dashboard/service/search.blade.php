@@ -3,12 +3,6 @@
 @section('content')
     <a href="{{ route('service.create')}}">Create</a>
 
-    <!-- Formulario de busqueda -->
-    <form action="{{route('service.search')}}" method="GET" >
-        <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
-        <button type="submit">Search</button>
-    </form>
-
     <table class="table-auto w-full bg-white">
         <thead>
             <tr class="border">
@@ -19,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($services as $service)
+            @foreach($servicesSearch as $service)
                 <tr class="border">
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $service->name }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $service->description }}</td>
@@ -37,6 +31,6 @@
             @endforeach
         </tbody>
     </table>
-    {{ $services->links() }}
+    {{ $servicesSearch->links() }}
     
 @endsection

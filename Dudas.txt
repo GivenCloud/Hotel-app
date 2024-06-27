@@ -6,3 +6,5 @@
 ¿Dónde debería de poner los métodos para asignar un servicio a un hotel o viceversa?
 ¿Hago una API para cada modelo? Hotel, huesped, servicio...
 ¿Tengo que hacer una busqueda? Por ejemplo, obtener todas las habitaciones de cierto hotel.
+
+Arreglar busqueda en habitaciones, si busco las habitaciones que son double no encuentro ninguna porque en la base de datos no guardo double, sino el id de del tipo de habitacion double
