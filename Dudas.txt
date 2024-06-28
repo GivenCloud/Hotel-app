@@ -1,10 +1,10 @@
-¿Cómo se asigna un huesped a una habitación? ¿O una habitación a un hotel? Etc.
 ¿Cuándo se borra una habitación tengo que borrar a los huespedes? ¿O solo la relación entre huesped y habitación?
 ¿No se puede usar mockito con con php ya que es una biblioteca específica de java? -> Posible solución: usar PHPUnit y Mockery par realizar pruebas unitarias y trabajar con mocks
 ¿Qué queremos que vea un usuario normal?
-¿Cómo puedo hacer que un usuario normal se convierta en un administrador? ¿Directamente desde la base de datos?
 ¿Dónde debería de poner los métodos para asignar un servicio a un hotel o viceversa?
-¿Hago una API para cada modelo? Hotel, huesped, servicio...
-¿Tengo que hacer una busqueda? Por ejemplo, obtener todas las habitaciones de cierto hotel.
+He hecho una API para cada modelo. Hotel, huesped, servicio...
+¿Para asignar huespedes a las habitaciones deberia de hacer un controlador y vistas extra? ¿O intento reutilizar los controladores que ya tengo?
 
-Arreglar busqueda en habitaciones, si busco las habitaciones que son double no encuentro ninguna porque en la base de datos no guardo double, sino el id de del tipo de habitacion double
+¿Cómo puedo hacer que un usuario normal se convierta en un administrador? ¿Directamente desde la base de datos?
+
+¿Una vez hecho esto ya esta toda la funcionalidad?

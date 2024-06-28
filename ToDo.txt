@@ -1,7 +1,8 @@
--Tengo que cambiar a MariaDB
 -Tengo que estilizar todas las vistas
 -Tengo que aprender a hacer pruebas unitarias y comenzar a hacerlas
 
 incluir funcion para asignar servicios a un hotel
 incluir funcion para asignar huespedes a una habitacion
 incluir funcion para asignar un servicio a un huesped
+
+Autenticación con Laravel Sanctum

@@ -23,7 +23,7 @@ class RoomController extends Controller
     {
         return response()->json(Room::create($request->validated()));
     }
-
+    
     /**
      * Display the specified resource.
      */

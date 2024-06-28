@@ -24,6 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::group(['middleware' => 'auth:sanctum'], function () {
+//     Route::resource('hotel', HotelController::class)->except(['create', 'edit']);
+//     Route::resource('room', RoomController::class)->except(['create', 'edit']);
+//     Route::resource('guest', GuestController::class)->except(['create', 'edit']);
+//     Route::resource('category', CategoryController::class)->except(['create', 'edit']);
+//     Route::resource('type', TypeController::class)->except(['create', 'edit']);
+//     Route::resource('service', ServiceController::class)->except(['create', 'edit']);
+// });
+
 Route::resource('hotel', HotelController::class)->except(['create', 'edit']);
 Route::resource('room', RoomController::class)->except(['create', 'edit']);
 Route::resource('guest', GuestController::class)->except(['create', 'edit']);
