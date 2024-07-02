@@ -45,6 +45,18 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('dashboard/hotel/add-services/{hotel}', [HotelController::class, 'addService'])->name('hotel.addService');
+    Route::post('dashboard/hotel/add-services/{hotel}', [HotelController::class, 'storeService'])->name('hotel.storeService');
+    Route::delete('dashboard/hotel/delete-services/{hotel}/{service}', [HotelController::class, 'destroyService'])->name('hotel.destroyService');
+    Route::get('room/add-guests/{room}', [RoomController::class, 'addGuest'])->name('room.addGuest');
+    Route::post('room/add-guests/{room}', [RoomController::class, 'storeGuest'])->name('room.storeGuest');
+    Route::delete('room/delete-guests/{room}/{guest}', [RoomController::class, 'destroyGuest'])->name('room.destroyGuest');
+    Route::get('guest/add-services/{guest}', [GuestController::class, 'addService'])->name('guest.addService');
+    Route::post('guest/add-services/{guest}', [GuestController::class, 'storeService'])->name('guest.storeService');
+    Route::delete('guest/delete-services/{guest}/{service}', [GuestController::class, 'destroyService'])->name('guest.destroyService');
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
     Route::resources([
         'hotel' => HotelController::class,
         'room' => RoomController::class,

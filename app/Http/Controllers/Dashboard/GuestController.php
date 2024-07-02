@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Guest\StoreRequest;
+use App\Http\Requests\ManyToMany\GuestService\StoreServiceRequest;
 use App\Models\Guest;
+use App\Models\ManyToMany\GuestService;
+use App\Models\Service;
 
 class GuestController extends Controller
 {
@@ -83,5 +86,32 @@ class GuestController extends Controller
     {
         $guest->delete();
         return redirect()->route('guest.index')->with('session', 'Guest deleted successfully');
+    }
+
+    public function addService(Guest $guest)
+    {
+        $services = Service::all();
+        return view('dashboard.guest.addService', compact('guest', 'services'));
+    }
+
+    public function storeService(StoreServiceRequest $request)
+    {
+        $guestId = $request->validated()['guest_id'];
+        $serviceIds = $request->validated()['service_id'];
+
+        $guest = Guest::findOrFail($guestId);
+        $guest->services()->syncWithoutDetaching($serviceIds);
+        
+        return redirect()->route('guest.index')->with('session', 'Service added successfully');
+    }
+
+    public function destroyService($guestId, $serviceId)
+    {
+        $guestService = GuestService::where('guest_id', $guestId)->where('service_id', $serviceId)->first();
+        if ($guestService) {
+            $guestService->delete();
+        }
+        $guest = Guest::findOrFail($guestId);
+        return view('dashboard.guest.show', compact('guest'));
     }
 }

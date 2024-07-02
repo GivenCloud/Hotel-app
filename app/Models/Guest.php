@@ -11,10 +11,10 @@ class Guest extends Model
     protected $fillable = ['id', 'name', 'lastName', 'dniPassport', 'email', 'phone', 'checkInDate', 'checkOutDate'];
 
     public function rooms() {
-        return $this->belongsToMany(Room::class, 'guest_room');
+        return $this->belongsToMany(Room::class, 'room_guests');
     }
 
     public function services() {
-        return $this->belongsToMany(Service::class, 'guest_service');
+        return $this->belongsToMany(Service::class, 'guest_services');
     }
 }

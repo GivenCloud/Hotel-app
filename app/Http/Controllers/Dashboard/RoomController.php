@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ManyToMany\RoomGuest\StoreGuestRequest;
 use App\Http\Requests\Room\StoreRequest;
+use App\Models\Guest;
 use App\Models\Hotel;
+use App\Models\ManyToMany\RoomGuest;
 use App\Models\Room;
 use App\Models\Type;
 
@@ -110,5 +113,32 @@ class RoomController extends Controller
     {
         $room->delete();
         return redirect()->route('room.index')->with('session', 'Room deleted successfully');
+    }
+
+    public function addGuest(Room $room)
+    {
+        $guests = Guest::all();
+        return view('dashboard.room.addGuest', compact('room', 'guests'));
+    }
+
+    public function storeGuest(StoreGuestRequest $request)
+    {
+        $roomId = $request->validated()['room_id'];
+        $guestIds = $request->validated()['guest_id'];
+
+        $room = Room::findOrFail($roomId);
+        $room->guests()->syncWithoutDetaching($guestIds);
+        
+        return redirect()->route('room.index')->with('session', 'Guest added to the room successfully');
+    }
+
+    public function destroyGuest($roomId, $guestId)
+    {
+        $roomGuest = RoomGuest::where('room_id', $roomId)->where('guest_id', $guestId)->first();
+        if ($roomGuest) {
+            $roomGuest->delete();
+        }
+        $room = Room::findOrFail($roomId);
+        return view('dashboard.room.show', compact('room'));
     }
 }

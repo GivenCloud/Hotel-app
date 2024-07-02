@@ -41,8 +41,9 @@
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->email }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->website }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">
-                        <a href="{{ route('hotel.show', $hotel)}}">See</a>
+                        <a href="{{ route('hotel.show', $hotel) }}">See</a>
                         <a href="{{ route('hotel.edit', $hotel) }}">Edit</a>
+                        <a href="{{ route('hotel.addService', $hotel) }}">Manage services</a>
                         <form action="{{ route('hotel.destroy', $hotel) }}" method="POST">
                             @csrf
                             @method('DELETE')

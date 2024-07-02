@@ -12,7 +12,7 @@ class Service extends Model
 
     public function hotels()
     {
-        return $this->belongsToMany(Hotel::class, 'hotel_service');
+        return $this->belongsToMany(Hotel::class, 'hotel_services');
     }
 
     public function category()
@@ -22,6 +22,6 @@ class Service extends Model
 
     public function guests()
     {
-        return $this->belongsToMany(Guest::class, 'guest_service');
+        return $this->belongsToMany(Guest::class, 'guest_services');
     }
 }

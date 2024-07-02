@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hotel\StoreRequest;
+use App\Http\Requests\ManyToMany\HotelService\StoreServiceRequest;
 use App\Models\Hotel;
+use App\Models\ManyToMany\HotelService;
+use App\Models\Service;
 
 class HotelController extends Controller
 {
@@ -83,5 +86,32 @@ class HotelController extends Controller
     {
         $hotel->delete();
         return redirect()->route('hotel.index')->with('session', 'Hotel deleted successfully');
+    }
+
+    public function addService(Hotel $hotel)
+    {
+        $services = Service::all();
+        return view('dashboard.hotel.addService', compact('hotel', 'services'));
+    }
+
+    public function storeService(StoreServiceRequest $request)
+    {
+        $hotelId = $request->validated()['hotel_id'];
+        $serviceIds = $request->validated()['service_id'];
+
+        $hotel = Hotel::findOrFail($hotelId);
+        $hotel->services()->syncWithoutDetaching($serviceIds);
+        
+        return redirect()->route('hotel.index')->with('session', 'Service added successfully');
+    }
+
+    public function destroyService($hotelId, $serviceId)
+    {
+        $hotelService = HotelService::where('hotel_id', $hotelId)->where('service_id', $serviceId)->first();
+        if ($hotelService) {
+            $hotelService->delete();
+        }
+        $hotel = Hotel::findOrFail($hotelId);
+        return view('dashboard.hotel.show', compact('hotel'));
     }
 }

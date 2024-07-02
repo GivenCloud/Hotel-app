@@ -11,7 +11,7 @@ class Room extends Model
     protected $fillable = ['id', 'number', 'type_id', 'hotel_id'];
 
     public function guests() {
-        return $this->belongsToMany(Guest::class, 'guest_room');
+        return $this->belongsToMany(Guest::class, 'room_guests');
     }
 
     public function type() {

@@ -4,6 +4,7 @@
 ¿Dónde debería de poner los métodos para asignar un servicio a un hotel o viceversa?
 He hecho una API para cada modelo. Hotel, huesped, servicio...
 ¿Para asignar huespedes a las habitaciones deberia de hacer un controlador y vistas extra? ¿O intento reutilizar los controladores que ya tengo?
+¿Está bien hecho o debería de hacerlo de otra forma?
 
 ¿Cómo puedo hacer que un usuario normal se convierta en un administrador? ¿Directamente desde la base de datos?
 
