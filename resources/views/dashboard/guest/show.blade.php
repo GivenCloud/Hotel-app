@@ -9,18 +9,32 @@
     <p>{{ $guest->checkInDate }}</p>
     <p>{{ $guest->checkOutDate }}</p>
     <p>Services:</p>
-    <ul class="list-disc ml-4">
-        @foreach ($guest->services as $service)
-        <li class="inline-block ml-2">
-            {{$service->name}}
-            <form action="{{ route('guest.destroyService', ['guest' => $guest->id, 'service' => $service->id]) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
-            </form>
-        </li>
-        @endforeach
-    </ul>
+        <ul class="list-disc ml-4">
+            @foreach ($guest->services as $service)
+            <li class="inline-block ml-2">
+                {{$service->name}}
+                <form action="{{ route('guest.destroyService', ['guest' => $guest->id, 'service' => $service->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                </form>
+            </li>
+            @endforeach
+        </ul>
+        
+    <p>Rooms:</p>
+        <ul class="list-disc ml-4">
+            @foreach ($guest->rooms as $room)
+            <li class="inline-block ml-2">
+                {{$room->number}}
+                <form action="{{ route('guest.destroyRoom', ['guest' => $guest->id, 'room' => $room->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                </form>
+            </li>
+            @endforeach
+        </ul>
 
     <a href="{{ route('guest.index') }}"><button type="button">Back</button></a>
 @endsection

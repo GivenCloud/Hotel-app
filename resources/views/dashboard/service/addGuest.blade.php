@@ -1,42 +1,3 @@
-{{-- @php
-    use Illuminate\Support\Facades\Route;
-@endphp
-
-@extends('dashboard.layout')
-
-@section('content')
-
-    @include('dashboard.fragment.errors-form')
-    
-    <h1>Add guests to room {{ $room->number }}</h1>
-
-    <div class="container">
-        <form action="{{ route('room.storeGuest', ['room' => $room->id]) }}" method="POST">
-            @csrf
-
-            <input type="hidden" name="room_id" value="{{ $room->id }}">
-
-            <div class="form-group">
-                <label for="guests">Guests:</label>
-                @foreach ($guests as $guest)
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="guest_id[]" value="{{ $guest->id }}" id="guest{{ $guest->id }}"
-                        @if($room->guests->contains($guest->id)) checked @endif>
-                        <label class="form-check-label" for="guest{{ $guest->id }}">
-                            {{ $guest->name }} 
-                        </label>
-                    </div>
-                @endforeach
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add guests</button>
-            <a href="{{ route('room.index') }}"><button type="button">Back</button></a>
-        </form>
-    </div>
-
-@endsection --}}
-
-
 @php
     use Illuminate\Support\Facades\Route;
 @endphp
@@ -47,13 +8,13 @@
 
     @include('dashboard.fragment.errors-form')
     
-    <h1 class="text-2xl font-bold mb-6">Add guests to room {{ $room->number }}</h1>
+    <h1 class="text-2xl font-bold mb-6">Add guests to service {{ $service->number }}</h1>
 
     <div class="container mx-auto p-4 bg-white shadow-md rounded">
-        <form id="add-guests-form" action="{{ route('room.storeGuest', ['room' => $room->id]) }}" method="POST">
+        <form id="add-guests-form" action="{{ route('service.storeGuest', ['service' => $service->id]) }}" method="POST">
             @csrf
 
-            <input type="hidden" name="room_id" value="{{ $room->id }}">
+            <input type="hidden" name="service_id" value="{{ $service->id }}">
             <input type="hidden" name="guest_id[]" value="">
 
             <div class="form-group mb-4 relative">
@@ -70,7 +31,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add guests</button>
-            <a href="{{ route('room.index') }}" class="btn btn-secondary bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2">Back</a>
+            <a href="{{ route('service.index') }}" class="btn btn-secondary bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2">Back</a>
         </form>
     </div>
 

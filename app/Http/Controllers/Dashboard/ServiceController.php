@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ManyToMany\GuestService\StoreGuestRequest;
+use App\Http\Requests\ManyToMany\HotelService\StoreHotelRequest;
 use App\Http\Requests\Service\StoreRequest;
 use App\Models\Category;
+use App\Models\Guest;
+use App\Models\Hotel;
+use App\Models\ManyToMany\GuestService;
+use App\Models\ManyToMany\HotelService;
 use App\Models\Service;
 
 class ServiceController extends Controller
@@ -84,5 +90,59 @@ class ServiceController extends Controller
     {
         $service->delete();
         return redirect()->route('service.index')->with('session', 'Service deleted successfully');
+    }
+
+    public function addHotel(Service $service)
+    {
+        $hotels = Hotel::all();
+        return view('dashboard.service.addHotel', compact('hotels', 'service'));
+    }
+
+    public function storeHotel(StoreHotelRequest $request)
+    {
+        $serviceId = $request->validated()['service_id'];
+        $hotelIds = $request->validated()['hotel_id'] ?? [];
+
+        $service = Service::findOrFail($serviceId);
+        $service->hotels()->syncWithoutDetaching($hotelIds);
+        
+        return redirect()->route('service.index')->with('session', 'Hotel added to the service successfully');
+    }
+
+    public function destroyHotel($serviceId, $hotelId)
+    {
+        $serviceHotel = HotelService::where('service_id', $serviceId)->where('hotel_id', $hotelId)->first();
+        if ($serviceHotel) {
+            $serviceHotel->delete();
+        }
+        $service = Service::findOrFail($serviceId);
+        return view('dashboard.service.show', compact('service'));
+    }
+
+    public function addGuest(Service $service)
+    {
+        $guests = Guest::all();
+        return view('dashboard.service.addGuest', compact('guests', 'service'));
+    }
+
+    public function storeGuest(StoreGuestRequest $request)
+    {
+        $serviceId = $request->validated()['service_id'];
+        $guestIds = $request->validated()['guest_id'] ?? [];
+
+        $service = Service::findOrFail($serviceId);
+        $service->guests()->syncWithoutDetaching($guestIds);
+        
+        return redirect()->route('service.index')->with('session', 'Guest added to the service successfully');
+    }
+
+    public function destroyGuest($serviceId, $guestId)
+    {
+        $serviceGuest = GuestService::where('service_id', $serviceId)->where('guest_id', $guestId)->first();
+        if ($serviceGuest) {
+            $serviceGuest->delete();
+        }
+        $service = Service::findOrFail($serviceId);
+        return view('dashboard.service.show', compact('service'));
     }
 }

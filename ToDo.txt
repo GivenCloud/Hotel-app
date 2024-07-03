@@ -1,4 +1,6 @@
 Aún no he comprobado que al crear/editar un huesped acepte el formato de un pasaporte.
+Cambiar como se asignan los huéspedes a las habitaciones
+Añadir la función para poder asignar un ahabitación a un huesped y viceversa. Esto hay que hacerlo con todas.
 
 -Tengo que estilizar todas las vistas
 -Tengo que aprender a hacer pruebas unitarias y comenzar a hacerlas

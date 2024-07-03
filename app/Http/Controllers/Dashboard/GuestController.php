@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Guest\StoreRequest;
 use App\Http\Requests\ManyToMany\GuestService\StoreServiceRequest;
+use App\Http\Requests\ManyToMany\RoomGuest\StoreRoomRequest;
 use App\Models\Guest;
 use App\Models\ManyToMany\GuestService;
+use App\Models\ManyToMany\RoomGuest;
+use App\Models\Room;
 use App\Models\Service;
 
 class GuestController extends Controller
@@ -110,6 +113,33 @@ class GuestController extends Controller
         $guestService = GuestService::where('guest_id', $guestId)->where('service_id', $serviceId)->first();
         if ($guestService) {
             $guestService->delete();
+        }
+        $guest = Guest::findOrFail($guestId);
+        return view('dashboard.guest.show', compact('guest'));
+    }
+
+    public function addRoom(Guest $guest)
+    {
+        $rooms = Room::all();
+        return view('dashboard.guest.addRoom', compact('guest', 'rooms'));
+    }
+
+    public function storeRoom(StoreRoomRequest $request)
+    {
+        $guestId = $request->validated()['guest_id'];
+        $roomIds = $request->validated()['room_id'] ?? [];
+
+        $guest = Guest::findOrFail($guestId);
+        $guest->rooms()->syncWithoutDetaching($roomIds);
+
+        return redirect()->route('guest.index')->with('session', 'Room added to the guest successfully');
+    }
+
+    public function destroyRoom($guestId, $roomId)
+    {
+        $roomGuest = RoomGuest::where('room_id', $roomId)->where('guest_id', $guestId)->first();
+        if ($roomGuest) {
+            $roomGuest->delete();
         }
         $guest = Guest::findOrFail($guestId);
         return view('dashboard.guest.show', compact('guest'));

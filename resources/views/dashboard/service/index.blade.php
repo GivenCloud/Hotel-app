@@ -26,6 +26,8 @@
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $service->category->name }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">
                         <a href="{{ route('service.show', $service)}}">See</a>
+                        <a href="{{ route('service.addHotel', $service) }}">Manage hotels</a>
+                        <a href="{{ route('service.addGuest', $service) }}">Manage guests</a>
                         <a href="{{ route('service.edit', $service) }}">Edit</a>
                         <form action="{{ route('service.destroy', $service) }}" method="POST">
                             @csrf

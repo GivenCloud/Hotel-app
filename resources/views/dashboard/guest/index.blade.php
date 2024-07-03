@@ -34,6 +34,7 @@
                     <td class="px-6 py-4 whitespace-normal text-center">
                         <a href="{{ route('guest.show', $guest)}}">See</a>
                         <a href="{{ route('guest.edit', $guest) }}">Edit</a>
+                        <a href="{{ route('guest.addRoom', $guest) }}">Manage rooms</a>
                         <a href="{{ route('guest.addService', $guest) }}">Manage services</a>
                         <form action="{{ route('guest.destroy', $guest) }}" method="POST">
                             @csrf
