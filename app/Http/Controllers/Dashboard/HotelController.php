@@ -27,7 +27,7 @@ class HotelController extends Controller
         $search = request('search');
         $hotelsSearch = Hotel::query()
             ->where('name', 'LIKE', "%{$search}%")
-            ->orWhere('adress', 'LIKE', "%{$search}%")
+            ->orWhere('address', 'LIKE', "%{$search}%")
             ->orWhere('phone', 'LIKE', "%{$search}%")
             ->orWhere('email', 'LIKE', "%{$search}%")
             ->orWhere('website', 'LIKE', "%{$search}%");

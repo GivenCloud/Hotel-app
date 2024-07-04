@@ -25,7 +25,7 @@
         <thead>
             <tr class="border">
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Name</th>
-                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Adress</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Address</th>
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Phone</th>
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Email</th>
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Website</th>
@@ -36,7 +36,7 @@
             @foreach($hotels as $hotel)
                 <tr class="border">
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->name }}</td>
-                    <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->adress }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->address }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->phone }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->email }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $hotel->website }}</td>

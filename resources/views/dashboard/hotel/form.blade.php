@@ -2,8 +2,8 @@
 <label for="">Name</label>
 <input type="text" name="name" class="block rounded-dm shadow-sm bg-purple-50 w-full" placeholder="Name" value="{{ old('name', $hotel->name)}}">
 
-<label for="">Adress</label>
-<input type="text" name="adress" class="block rounded-dm shadow-sm bg-purple-50 w-full" placeholder="Adress" value="{{ old('adress', $hotel->adress)}}">
+<label for="">Address</label>
+<input type="text" name="address" class="block rounded-dm shadow-sm bg-purple-50 w-full" placeholder="Address" value="{{ old('address', $hotel->address)}}">
 
 <label for="">Phone</label>
 <input type="number" name="phone" pattern="[0-9]{8}" class="block rounded-dm shadow-sm bg-purple-50 w-full" placeholder="Phone" value="{{ old('phone', $hotel->phone)}}">

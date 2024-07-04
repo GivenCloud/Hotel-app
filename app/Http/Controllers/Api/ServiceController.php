@@ -48,4 +48,24 @@ class ServiceController extends Controller
         $service->delete();
         return response()->json('true');
     }
+
+    public function search($name)
+    {
+        return response()->json(Service::where('name', 'like', "%$name%")->get());
+    }
+
+    public function getCategories(Service $service)
+    {
+        return response()->json($service->categories);
+    }
+
+    public function getHotels(Service $service)
+    {
+        return response()->json($service->hotels);
+    }
+
+    public function getGuests(Service $service)
+    {
+        return response()->json($service->guests);
+    }
 }

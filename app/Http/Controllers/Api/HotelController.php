@@ -48,4 +48,19 @@ class HotelController extends Controller
         $hotel->delete();
         return response()->json('true');
     }
+
+    public function search($name)
+    {
+        return response()->json(Hotel::where('name', 'like', "%$name%")->get());
+    }
+
+    public function getRooms(Hotel $hotel)
+    {
+        return response()->json($hotel->rooms);
+    }
+
+    public function getServices(Hotel $hotel)
+    {
+        return response()->json($hotel->services);
+    }
 }

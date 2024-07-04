@@ -48,4 +48,16 @@ class CategoryController extends Controller
         $category->delete();
         return response()->json('true');
     }
+
+    public function search($name)
+    {
+        return response()->json(Category::where('name', 'like', "%$name%")->get());
+    }
+
+    public function getServices(Category $category)
+    {
+        return response()->json($category->services);
+    }
+
+
 }

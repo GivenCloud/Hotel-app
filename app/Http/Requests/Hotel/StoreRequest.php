@@ -33,7 +33,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'adress' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
             'phone' => 'required|string|min:9|max:9|unique:hotels,phone,'.$this->route('hotel.id'),
             'email' => 'required|string|email|max:150|unique:hotels,email,'.$this->route('hotel.id'),
             'website' => 'required|string|max:100|unique:hotels,website,'.$this->route('hotel.id'),

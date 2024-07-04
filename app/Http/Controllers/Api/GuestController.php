@@ -48,4 +48,19 @@ class GuestController extends Controller
         $guest->delete();
         return response()->json('true');
     }
+
+    public function search($name)
+    {
+        return response()->json(Guest::where('name', 'like', "%$name%")->get());
+    }
+
+    public function getRooms(Guest $guest)
+    {
+        return response()->json($guest->rooms);
+    }
+
+    public function getServices(Guest $guest)
+    {
+        return response()->json($guest->services);
+    }
 }

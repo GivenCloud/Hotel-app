@@ -48,4 +48,14 @@ class TypeController extends Controller
         $type->delete();
         return response()->json('true');
     }
+
+    public function search($name)
+    {
+        return response()->json(Type::where('name', 'like', "%$name%")->get());
+    }
+
+    public function getRooms(Type $type)
+    {
+        return response()->json($type->rooms);
+    }
 }

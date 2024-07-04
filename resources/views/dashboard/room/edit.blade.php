@@ -1,7 +1,7 @@
 @extends('dashboard.layout')
 
 @section('content')
-<h1>Update room: {{ $room->number }}</h1>
+    <h1>Update room: {{ $room->number }}</h1>
 
     @include('dashboard.fragment.errors-form')
 

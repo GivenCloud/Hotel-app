@@ -3,13 +3,15 @@
 namespace Database\Factories;
 
 use App\Models\Hotel;
+use App\Models\Room;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Hotel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Room>
  */
-class HotelFactory extends Factory
+class RoomFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,14 +21,12 @@ class HotelFactory extends Factory
     public function definition(): array
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Hotel::truncate();
+        Room::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         return [
-            'name' => $this->faker->company(),
-            'address' => $this->faker->city(),
-            'phone' => $this->faker->phoneNumber(),
-            'email' => $this->faker->companyEmail(),
-            'website' => $this->faker->url(),
+            'number' => $this->faker->randomNumber(3, true),
+            'type_id' => Type::factory()->create()->id,
+            'hotel_id' => Hotel::factory()->create()->id,
         ];
     }
 }

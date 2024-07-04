@@ -24,18 +24,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::group(['middleware' => 'auth:sanctum'], function () {
-//     Route::resource('hotel', HotelController::class)->except(['create', 'edit']);
-//     Route::resource('room', RoomController::class)->except(['create', 'edit']);
-//     Route::resource('guest', GuestController::class)->except(['create', 'edit']);
-//     Route::resource('category', CategoryController::class)->except(['create', 'edit']);
-//     Route::resource('type', TypeController::class)->except(['create', 'edit']);
-//     Route::resource('service', ServiceController::class)->except(['create', 'edit']);
-// });
-
 Route::resource('hotel', HotelController::class)->except(['create', 'edit']);
 Route::resource('room', RoomController::class)->except(['create', 'edit']);
 Route::resource('guest', GuestController::class)->except(['create', 'edit']);
 Route::resource('category', CategoryController::class)->except(['create', 'edit']);
 Route::resource('type', TypeController::class)->except(['create', 'edit']);
 Route::resource('service', ServiceController::class)->except(['create', 'edit']);
+
+Route::get('service/search/{name}', [ServiceController::class, 'search']);
+Route::get('service/{service}/categories', [ServiceController::class, 'getCategories']);
+Route::get('service/{service}/hotels', [ServiceController::class, 'getHotels']);
+Route::get('service/{service}/guests', [ServiceController::class, 'getGuests']);
+
+
+Route::get('hotel/search/{name}', [HotelController::class, 'search']);
+Route::get('hotel/{hotel}/rooms', [HotelController::class, 'getRooms']);
+Route::get('hotel/{hotel}/services', [HotelController::class, 'getServices']);
+
+Route::get('room/search/{name}', [RoomController::class, 'search']);
+Route::get('room/{room}/hotel', [RoomController::class, 'getHotel']);
+Route::get('room/{room}/guests', [RoomController::class, 'getGuests']);
+Route::get('room/{room}/type', [RoomController::class, 'getType']);
+
+Route::get('type/search/{name}', [TypeController::class, 'search']);
+Route::get('type/{type}/rooms', [TypeController::class, 'getRooms']);
+
+Route::get('category/search/{name}', [CategoryController::class, 'search']);
+Route::get('category/{category}/services', [CategoryController::class, 'getServices']);
+
+Route::get('guest/search/{name}', [GuestController::class, 'search']);
+Route::get('guest/{guest}/rooms', [GuestController::class, 'getRooms']);
+Route::get('guest/{guest}/services', [GuestController::class, 'getServices']);

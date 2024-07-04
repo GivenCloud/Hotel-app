@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>{{ $hotel->name }}</h1>
-    <p>Adress: {{ $hotel->address }}</p>
+    <p>Address: {{ $hotel->address }}</p>
     <p>Phone number: {{ $hotel->phone }}</p>
     <p>Email: {{ $hotel->email }}</p>
     <p>Website: {{ $hotel->website }}</p>

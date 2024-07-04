@@ -29,10 +29,18 @@ class ServiceController extends Controller
         $search = request('search');
         $category = Category::where('name', $search)->first();
 
+        if ($category) {
+            $categoryId = $category->id;
+        } else {
+            $categoryId = null; 
+        }
+
         $servicesSearch = Service::query()
             ->where('name', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
-            ->orWhere('category_id', 'LIKE', $category->id);
+            ->orWhere(function ($query) use ($categoryId) {
+                $query->where('category_id', '=', $categoryId);
+            });
 
         $servicesSearch = $servicesSearch->paginate(5);
         return view('dashboard.service.search', compact('servicesSearch'));
@@ -54,8 +62,7 @@ class ServiceController extends Controller
     public function store(StoreRequest $request)
     {
         Service::create($request->validated());
-        return redirect()->route('service.index')->with('session', 'Service created successfully');
-    }
+        return redirect()->route('service.index')->with('session', 'Service stored successfully');    }
 
     /**
      * Display the specified resource.
@@ -80,7 +87,7 @@ class ServiceController extends Controller
     public function update(StoreRequest $request, Service $service)
     {
         $service->update($request->validated());
-        return redirect()->route('dashboard.service.index')->with('session', 'Service updated successfully');
+        return redirect()->route('service.index')->with('session', 'Service updated successfully');
     }
 
     /**

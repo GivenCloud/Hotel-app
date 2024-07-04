@@ -48,4 +48,24 @@ class RoomController extends Controller
         $room->delete();
         return response()->json('true');
     }
+
+    public function search($name)
+    {
+        return response()->json(Room::where('name', 'like', "%$name%")->get());
+    }
+
+    public function getHotel(Room $room)
+    {
+        return response()->json($room->hotel);
+    }
+
+    public function getGuests(Room $room)
+    {
+        return response()->json($room->guests);
+    }
+
+    public function getType(Room $room)
+    {
+        return response()->json($room->type);
+    }
 }
