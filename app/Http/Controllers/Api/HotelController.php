@@ -13,7 +13,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return response()->json(Hotel::get());
+        return response()->json(Hotel::get(), 200);
     }
 
     /**
@@ -21,46 +21,52 @@ class HotelController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return response()->json(Hotel::create($request->validated()));
+        return response()->json(Hotel::create($request->validated()), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Hotel $hotel)
+    public function show($id)
     {
-        return response()->json($hotel);
+        $hotel = Hotel::findOrFail($id);
+        return response()->json($hotel, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request, Hotel $hotel)
+    public function update(StoreRequest $request, $id)
     {
-        return response()->json($hotel->update($request->validated()));
+        $hotel = Hotel::findOrFail($id);
+        $hotel->update($request->validated());
+        return response()->json($hotel, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hotel $hotel)
+    public function destroy($id)
     {
+        $hotel = Hotel::findOrFail($id);
         $hotel->delete();
-        return response()->json('true');
+        return response()->json(null, 204);
     }
 
     public function search($name)
     {
-        return response()->json(Hotel::where('name', 'like', "%$name%")->get());
+        return response()->json(Hotel::where('name', 'like', "%$name%")->get(), 200);
     }
 
-    public function getRooms(Hotel $hotel)
+    public function getRooms($id)
     {
-        return response()->json($hotel->rooms);
+        $hotel = Hotel::findOrFail($id);
+        return response()->json($hotel->rooms, 200);
     }
 
-    public function getServices(Hotel $hotel)
+    public function getServices($id)
     {
-        return response()->json($hotel->services);
+        $hotel = Hotel::findOrFail($id);
+        return response()->json($hotel->services, 200);
     }
 }

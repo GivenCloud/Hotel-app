@@ -12,7 +12,6 @@
             @endif
         </ul>  
     @endif --}}
-    
     <a href="{{ route('hotel.create') }}">Create</a>
 
     <!-- Formulario de busqueda -->

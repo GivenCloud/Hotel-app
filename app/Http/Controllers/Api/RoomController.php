@@ -13,7 +13,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return response()->json(Room::get());
+        return response()->json(Room::get(), 200);
     }
 
     /**
@@ -21,51 +21,58 @@ class RoomController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return response()->json(Room::create($request->validated()));
+        return response()->json(Room::create($request->validated()), 201);
     }
     
     /**
      * Display the specified resource.
      */
-    public function show(Room $room)
+    public function show($id)
     {
-        return response()->json($room);
+        $room = Room::findOrFail($id);
+        return response()->json($room, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request, Room $room)
+    public function update(StoreRequest $request, $id)
     {
-        return response()->json($room->update($request->validated()));
+        $room = Room::findOrFail($id);
+        $room->update($request->validated());
+        return response()->json($room, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Room $room)
+    public function destroy($id)
     {
+        $room = Room::findOrFail($id);
         $room->delete();
-        return response()->json('true');
+        return response()->json(null, 204);
     }
 
-    public function search($name)
+    public function search($number)
     {
-        return response()->json(Room::where('name', 'like', "%$name%")->get());
+        return response()->json(Room::where('number', 'like', "%$number%")->get(), 200);
     }
 
-    public function getHotel(Room $room)
+    public function getHotel($id)
     {
-        return response()->json($room->hotel);
+        $room = Room::findOrFail($id);
+        return response()->json($room->hotel, 200);
     }
 
-    public function getGuests(Room $room)
+    public function getGuests($id)
     {
-        return response()->json($room->guests);
+        $room = Room::findOrFail($id);
+        return response()->json($room->guests, 200);
     }
 
-    public function getType(Room $room)
+    public function getType($id)
     {
-        return response()->json($room->type);
+        $room = Room::findOrFail($id);
+        return response()->json($room->type, 200);
     }
 }

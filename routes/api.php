@@ -32,7 +32,7 @@ Route::resource('type', TypeController::class)->except(['create', 'edit']);
 Route::resource('service', ServiceController::class)->except(['create', 'edit']);
 
 Route::get('service/search/{name}', [ServiceController::class, 'search']);
-Route::get('service/{service}/categories', [ServiceController::class, 'getCategories']);
+Route::get('service/{service}/category', [ServiceController::class, 'getCategory']);
 Route::get('service/{service}/hotels', [ServiceController::class, 'getHotels']);
 Route::get('service/{service}/guests', [ServiceController::class, 'getGuests']);
 
@@ -41,7 +41,7 @@ Route::get('hotel/search/{name}', [HotelController::class, 'search']);
 Route::get('hotel/{hotel}/rooms', [HotelController::class, 'getRooms']);
 Route::get('hotel/{hotel}/services', [HotelController::class, 'getServices']);
 
-Route::get('room/search/{name}', [RoomController::class, 'search']);
+Route::get('room/search/{number}', [RoomController::class, 'search']);
 Route::get('room/{room}/hotel', [RoomController::class, 'getHotel']);
 Route::get('room/{room}/guests', [RoomController::class, 'getGuests']);
 Route::get('room/{room}/type', [RoomController::class, 'getType']);

@@ -13,7 +13,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return response()->json(Service::get());
+        return response()->json(Service::get(), 200);
     }
 
     /**
@@ -21,51 +21,58 @@ class ServiceController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return response()->json(Service::create($request->validated()));
+        return response()->json(Service::create($request->validated()), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show($id)
     {
-        return response()->json($service);
+        $service = Service::findOrFail($id);
+        return response()->json($service, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request, Service $service)
+    public function update(StoreRequest $request, $id)
     {
-        return response()->json($service->update($request->validated()));
+        $service = Service::findOrFail($id);
+        $service->update($request->validated());
+        return response()->json($service, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
+        $service = Service::findOrFail($id);
         $service->delete();
-        return response()->json('true');
+        return response()->json(null, 204);
     }
 
     public function search($name)
     {
-        return response()->json(Service::where('name', 'like', "%$name%")->get());
+        return response()->json(Service::where('name', 'like', "%$name%")->get(), 200);
     }
 
-    public function getCategories(Service $service)
+    public function getCategory($id)
     {
-        return response()->json($service->categories);
+        $service = Service::findOrFail($id);
+        return response()->json($service->category, 200);
     }
 
-    public function getHotels(Service $service)
+    public function getHotels($id)
     {
-        return response()->json($service->hotels);
+        $service = Service::findOrFail($id);
+        return response()->json($service->hotels, 200);
     }
 
-    public function getGuests(Service $service)
+    public function getGuests($id)
     {
-        return response()->json($service->guests);
+        $service = Service::findOrFail($id);
+        return response()->json($service->guests, 200);
     }
 }

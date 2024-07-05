@@ -13,7 +13,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return response()->json(Type::get());
+        return response()->json(Type::get(), 200);
     }
 
     /**
@@ -21,41 +21,46 @@ class TypeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return response()->json(Type::create($request->validated()));
+        return response()->json(Type::create($request->validated()), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Type $type)
+    public function show($id)
     {
-        return response()->json($type);
+        $type = Type::findOrFail($id);
+        return response()->json($type, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request, Type $type)
+    public function update(StoreRequest $request, $id)
     {
-        return response()->json($type->update($request->validated()));
+        $type = Type::findOrFail($id);
+        $type->update($request->validated());
+        return response()->json($type, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Type $type)
+    public function destroy($id)
     {
+        $type = Type::findOrFail($id);
         $type->delete();
-        return response()->json('true');
+        return response()->json(null, 204);
     }
 
     public function search($name)
     {
-        return response()->json(Type::where('name', 'like', "%$name%")->get());
+        return response()->json(Type::where('name', 'like', "%$name%")->get(), 200);
     }
 
-    public function getRooms(Type $type)
+    public function getRooms($id)
     {
-        return response()->json($type->rooms);
+        $type = Type::findOrFail($id);
+        return response()->json($type->rooms, 200);
     }
 }

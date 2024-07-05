@@ -19,13 +19,13 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('hotels')
                 ->cascadeOnUpdate()
-                ->nullOnDelete();
+                ->cascadeOnDelete();
 
             $table->foreignId('service_id')
                 ->nullable()
                 ->constrained('services')
                 ->cascadeOnUpdate()
-                ->nullOnDelete();
+                ->cascadeOnDelete();
 
             $table->timestamps();
 

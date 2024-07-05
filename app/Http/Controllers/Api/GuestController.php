@@ -13,7 +13,7 @@ class GuestController extends Controller
      */
     public function index()
     {
-        return response()->json(Guest::get());
+        return response()->json(Guest::get(), 200);
     }
 
     /**
@@ -21,32 +21,36 @@ class GuestController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return response()->json(Guest::create($request->validated()));
+        return response()->json(Guest::create($request->validated()), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Guest $guest)
+    public function show($id)
     {
-        return response()->json($guest);
+        $guest = Guest::findOrFail($id);
+        return response()->json($guest, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request, Guest $guest)
+    public function update(StoreRequest $request, $id)
     {
-        return response()->json($guest->update($request->validated()));
+        $guest = Guest::findOrFail($id);
+        $guest->update($request->validated());
+        return response()->json($guest, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Guest $guest)
+    public function destroy($id)
     {
+        $guest = Guest::findOrFail($id);
         $guest->delete();
-        return response()->json('true');
+        return response()->json(null, 204);
     }
 
     public function search($name)
@@ -54,13 +58,15 @@ class GuestController extends Controller
         return response()->json(Guest::where('name', 'like', "%$name%")->get());
     }
 
-    public function getRooms(Guest $guest)
+    public function getRooms($id)
     {
-        return response()->json($guest->rooms);
+        $guest = Guest::findOrFail($id);
+        return response()->json($guest->rooms, 200);
     }
 
-    public function getServices(Guest $guest)
+    public function getServices($id)
     {
-        return response()->json($guest->services);
+        $guest = Guest::findOrFail($id);
+        return response()->json($guest->services, 200);
     }
 }

@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return response()->json(Category::get());
+        return response()->json(Category::get(), 200);
     }
 
     /**
@@ -21,42 +21,47 @@ class CategoryController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return response()->json(Category::create($request->validated()));
+        return response()->json(Category::create($request->validated()), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        return response()->json($category);
+        $category = Category::findOrFail($id);
+        return response()->json($category, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request, Category $category)
+    public function update(StoreRequest $request, $id)
     {
-        return response()->json($category->update($request->validated()));
+        $category = Category::findOrFail($id);
+        $category->update($request->validated());
+        return response()->json($category, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
+        $category = Category::findOrFail($id);
         $category->delete();
-        return response()->json('true');
+        return response()->json(null, 204);
     }
 
     public function search($name)
     {
-        return response()->json(Category::where('name', 'like', "%$name%")->get());
+        return response()->json(Category::where('name', 'like', "%$name%")->get(), 200);
     }
 
-    public function getServices(Category $category)
+    public function getServices($id)
     {
-        return response()->json($category->services);
+        $category = Category::findOrFail($id);
+        return response()->json($category->services, 200);
     }
 
 
