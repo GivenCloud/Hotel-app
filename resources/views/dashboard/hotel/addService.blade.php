@@ -20,8 +20,7 @@
                 <label for="services">Services:</label>
                 @foreach ($services as $service)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="service_id[]" value="{{ $service->id }}" id="service{{ $service->id }}"
-                        @if($hotel->services->contains($service->id)) checked @endif>
+                        <input class="form-check-input" type="checkbox" name="service_id[]" value="{{ $service->id }}" id="service{{ $service->id }}">
                         <label class="form-check-label" for="service{{ $service->id }}">
                             {{ $service->name }} 
                         </label>

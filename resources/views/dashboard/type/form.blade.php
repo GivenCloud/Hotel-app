@@ -5,5 +5,8 @@
 <label for="">Price</label>
 <input type="number" name="price" class="block rounded-dm shadow-sm bg-purple-50 w-full" placeholder="Price" value="{{ old('price', $type->price)}}">
 
+<label for="">Capacity</label>
+<input type="number" name="capacity" class="block rounded-dm shadow-sm bg-purple-50 w-full" placeholder="Capacity" value="{{ old('capacity', $type->capacity)}}">
+
 <input type="submit" value="Send">
 <a href="{{ route('type.index') }}"><button type="button">Back</button></a>

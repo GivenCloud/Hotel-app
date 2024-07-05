@@ -20,42 +20,50 @@ class TypeSeeder extends Seeder
 
         Type:: create( 
             ['name' => 'Single',
-            'price' => 30]
+            'price' => 30,
+            'capacity' => 1]
         );
         
         Type:: create( 
             ['name' => 'Double',
-            'price' => 50]
+            'price' => 50,
+            'capacity' => 2]
         );
 
         Type:: create( 
             ['name' => 'Triple',
-            'price' => 70]
+            'price' => 70,
+            'capacity' => 3]
         );
 
         Type:: create( 
             ['name' => 'Queen',
-            'price' => 110]
+            'price' => 110,
+            'capacity' => 4]
         );
 
         Type:: create( 
             ['name' => 'King',
-            'price' => 130]
+            'price' => 130,
+            'capacity' => 5]
         );
 
         Type:: create( 
             ['name' => 'Studio',
-            'price' => 190]
+            'price' => 190,
+            'capacity' => 8]
         );
 
         Type:: create( 
             ['name' => 'Master',
-            'price' => 210]
+            'price' => 210,
+            'capacity' => 10]
         );
 
         Type:: create( 
             ['name' => 'President',
-            'price' => 250]
+            'price' => 250,
+            'capacity' => 12]
         );
     }
 }

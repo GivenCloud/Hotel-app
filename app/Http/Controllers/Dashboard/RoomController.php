@@ -117,7 +117,8 @@ class RoomController extends Controller
 
     public function addGuest(Room $room)
     {
-        $guests = Guest::all();
+        $addedGuests = $room->guests->pluck('id')->toArray();
+        $guests = Guest::whereNotIn('id', $addedGuests)->get();
         return view('dashboard.room.addGuest', compact('room', 'guests'));
     }
 

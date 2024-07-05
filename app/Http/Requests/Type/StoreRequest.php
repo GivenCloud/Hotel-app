@@ -33,7 +33,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:150, unique:types,name' . $this->route('type.id'),
-            'price' => 'required|numeric|min:0|max:999999.99'
+            'price' => 'required|numeric|min:0|max:999999.99',
+            'capacity' => 'required|integer|min:1|max:12',
         ];
     }
 }

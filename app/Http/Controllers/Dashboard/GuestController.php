@@ -93,7 +93,8 @@ class GuestController extends Controller
 
     public function addService(Guest $guest)
     {
-        $services = Service::all();
+        $addedServices = $guest->services->pluck('id')->toArray();
+        $services = Service::whereNotIn('id', $addedServices)->get();
         return view('dashboard.guest.addService', compact('guest', 'services'));
     }
 
@@ -120,7 +121,8 @@ class GuestController extends Controller
 
     public function addRoom(Guest $guest)
     {
-        $rooms = Room::all();
+        $addedRooms = $guest->rooms->pluck('id')->toArray();
+        $rooms = Room::whereNotIn('id', $addedRooms)->get();
         return view('dashboard.guest.addRoom', compact('guest', 'rooms'));
     }
 

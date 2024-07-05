@@ -9,6 +9,7 @@
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">ID</th>
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Name</th>
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Price</th>
+                <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Capacity</th>
                 <th class="px-6 py-4 bg-gray-50 font-medium text-gray-500 uppercase leading-4 tracking-widest">Actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $type->id }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $type->name }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">{{ $type->price }}</td>
+                    <td class="px-6 py-4 whitespace-normal text-center">{{ $type->capacity }}</td>
                     <td class="px-6 py-4 whitespace-normal text-center">
                         <a href="{{ route('type.show', $type)}}">See</a>
                         <a href="{{ route('type.edit', $type) }}">Edit</a>

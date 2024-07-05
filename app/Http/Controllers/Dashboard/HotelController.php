@@ -90,7 +90,8 @@ class HotelController extends Controller
 
     public function addService(Hotel $hotel)
     {
-        $services = Service::all();
+        $addedServices = $hotel->services->pluck('id')->toArray();
+        $services = Service::whereNotIn('id', $addedServices)->get();
         return view('dashboard.hotel.addService', compact('hotel', 'services'));
     }
 

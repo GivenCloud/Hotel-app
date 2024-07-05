@@ -101,7 +101,8 @@ class ServiceController extends Controller
 
     public function addHotel(Service $service)
     {
-        $hotels = Hotel::all();
+        $addedHotels = $service->hotels->pluck('id')->toArray();
+        $hotels = Hotel::whereNotIn('id', $addedHotels)->get();
         return view('dashboard.service.addHotel', compact('hotels', 'service'));
     }
 
@@ -128,7 +129,8 @@ class ServiceController extends Controller
 
     public function addGuest(Service $service)
     {
-        $guests = Guest::all();
+        $addedGuests = $service->guests->pluck('id')->toArray();
+        $guests = Guest::whereNotIn('id', $addedGuests)->get();
         return view('dashboard.service.addGuest', compact('guests', 'service'));
     }
 
